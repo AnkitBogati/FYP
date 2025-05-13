@@ -5,6 +5,22 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import CreateListing from "./pages/CreateListing";
 import ListingDetails from "./pages/ListingDetails";
+import TripList from "./pages/TripList";
+import WishList from "./pages/WishList";
+import PropertyList from "./pages/PropertyList";
+import ReservationList from "./pages/ReservationList";
+import CategoryPage from "./pages/CategoryPage";
+import SearchingPage from "./pages/SearchingPage";
+import AboutUs from "./pages/AboutUs";
+import Terms from "./pages/Terms";
+import Refund from "./pages/Refund";
+import AdminDashboard from "./pages/AdminDashboard";
+import HostDashboard from "./pages/HostDashboard"
+
+import UserManagement from "./components/UserManagement";
+import PropertyManagement from "./components/PropertyManagement";
+import BookingManagement from "./components/BookingManagement";
+
 
 function App() {
   return (
@@ -15,8 +31,23 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/create-listing" element={<CreateListing />} />
-          <Route path="/properties/:listingId" element={<ListingDetails/>} />
-    
+          <Route path="/properties/:listingId" element={<ListingDetails />} />
+          <Route path="/properties/category/:category" element={<CategoryPage />} />
+          <Route path="/properties/search/:search" element={<SearchingPage />} />
+          <Route path="/:userId/trips" element={<TripList />} />
+          <Route path="/:userId/wishList" element={<WishList />} />
+          <Route path="/:userId/properties" element={<PropertyList />} />
+          <Route path="/:userId/reservations" element={<ReservationList />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/refund" element={<Refund />} />
+
+          {/* Admin Dashboard */}
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/users" element={<UserManagement />} />
+          <Route path="/admin/properties" element={<PropertyManagement />} />
+          <Route path="/admin/bookings" element={<BookingManagement />} />
+          <Route path="/host" element={<HostDashboard />} />
         </Routes>
       </BrowserRouter>
     </div>

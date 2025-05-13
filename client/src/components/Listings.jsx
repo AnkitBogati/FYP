@@ -30,9 +30,11 @@ const Listings = () => {
       dispatch(setListings({ listings: data }));
       setLoading(false);
     } catch (err) {
-      console.log("Fetch Listings Failed", err.message);
+      console.log("Fetch Listings Failed", err.message); 
     }
   };
+
+
 
   useEffect(() => {
     getFeedListings();
@@ -68,7 +70,7 @@ const Listings = () => {
               category,
               type,
               price,
-              booking=false
+              booking = false
             }) => (
               <ListingCard
                 listingId={_id}
@@ -81,7 +83,22 @@ const Listings = () => {
                 type={type}
                 price={price}
                 booking={booking}
+                userId={booking?.userId}
+                profileImagePath={booking?.profileImagePath}
               />
+              // <ListingCard
+              //   key={_id}
+              //   listingId={_id}
+              //   creator={creator}
+              //   listingPhotoPaths={listingPhotoPaths}
+              //   city={city}
+              //   province={province}
+              //   country={country}
+              //   category={category}
+              //   type={type}
+              //   price={price}
+              //   booking={booking}
+              // />
             )
           )}
         </div>

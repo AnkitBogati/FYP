@@ -138,7 +138,7 @@ const CreateListing = () => {
       });
 
       if (response.ok) {
-        navigate("/");
+        navigate("/host");
       }
     } catch (err) {
       console.log("Publish Listing failed", err.message);
@@ -527,3 +527,7 @@ const CreateListing = () => {
 };
 
 export default CreateListing;
+
+
+
+

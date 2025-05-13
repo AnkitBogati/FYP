@@ -88,4 +88,242 @@
     z-index: 999;
     background: none;
   }
+
+  .listing-card {
+    position: relative; /* Ensure the card is the positioning reference */
+    /* Other existing styles */
+  }
+  
+  .status-message {
+    position: absolute; /* Position it absolutely within the card */
+    bottom: 10px; /* Distance from the bottom of the card */
+    right: 10px; /* Distance from the right side of the card */
+    background-color: rgba(255, 255, 255, 0.8); /* Light background for visibility */
+    padding: 5px 10px; /* Padding for some spacing */
+    border-radius: 5px; /* Rounded corners */
+    font-weight: bold; /* Bold text */
+    color: #ff9800; /* Optional: color for the text */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Optional: subtle shadow */
+  }
+
+  /* Add these styles to your existing ListingCard.scss file */
+
+.status-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 10;
+}
+
+.status-pending {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.status-accepted {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.status-cancelled {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-completed {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+.guest-info-container {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eaeaea;
+}
+
+.guest-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.guest-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.guest-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.guest-name {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.action-buttons button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-buttons button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.accept-btn {
+  background-color: #22c55e;
+  color: white;
+  
+  &:hover {
+    background-color: #16a34a;
+  }
+}
+
+.reject-btn {
+  background-color: #ef4444;
+  color: white;
+  
+  &:hover {
+    background-color: #dc2626;
+  }
+}
+
+.complete-btn {
+  background-color: #0ea5e9;
+  color: white;
+  width: 100%;
+  
+  &:hover {
+    background-color: #0284c7;
+  }
+}
+
+/* Add these styles to your existing ListingCard.scss file */
+
+.guest-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+.status-indicator {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-pending {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.status-accepted {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.status-cancelled {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-completed {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+.reservation-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.reservation-actions button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reservation-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.accept-btn {
+  background-color: #22c55e;
+  color: white;
+  
+  &:hover {
+    background-color: #16a34a;
+  }
+}
+
+.reject-btn {
+  background-color: #ef4444;
+  color: white;
+  
+  &:hover {
+    background-color: #dc2626;
+  }
+}
+
+.complete-btn {
+  background-color: #0ea5e9;
+  color: white;
+  
+  &:hover {
+    background-color: #0284c7;
+  }
+}
+.guest-profile-image {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 }

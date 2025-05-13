@@ -17,6 +17,16 @@
     cursor: pointer;
   }
 
+  .button {
+    @include buttonStyle;
+    width: 100%;
+    // margin-top: 30px;
+
+    @include lg {
+      max-width: 300px;
+    }
+  }
+
   &_search {
     border: 1px solid $grey;
     border-radius: 30px;
@@ -30,6 +40,7 @@
       border: none;
       outline: none;
     }
+
 
     &:hover {
       @include shadow;
@@ -112,6 +123,72 @@
           background-color: rgba(217, 213, 213, 0.2);
         }
       }
+
+      
     }
   }
 }
+
+
+// // Add these to your existing Navbar.scss
+// .notification-dropdown {
+//   position: absolute;
+//   top: 60px;
+//   right: 120px;
+//   width: 300px;
+//   max-height: 400px;
+//   overflow-y: auto;
+//   background: white;
+//   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+//   border-radius: 8px;
+//   z-index: 1000;
+//   padding: 15px;
+
+//   h3 {
+//     margin: 0 0 10px 0;
+//     font-size: 1.2rem;
+//     // color: variables.$darkgrey;
+//   }
+
+//   p {
+//     margin: 0;
+//     font-size: 0.9rem;
+//   }
+
+//   small {
+//     color: #666;
+//     font-size: 0.8rem;
+//   }
+
+//   .notification-item {
+//     padding: 10px;
+//     border-bottom: 1px solid #eee;
+//     cursor: pointer;
+//     transition: background-color 0.2s;
+
+//     &:hover {
+//       background-color: #f5f5f5;
+//     }
+
+//     &.unread {
+//       background-color: #f5f9ff;
+//       font-weight: 500;
+//     }
+//   }
+// }
+
+// // Make sure dropdowns appear above other content
+// .navbar_right_accountmenu,
+// .notification-dropdown {
+//   z-index: 1001;
+// }
+
+// // Close button style if you want to add one
+// .close-notifications {
+//   position: absolute;
+//   top: 5px;
+//   right: 5px;
+//   background: none;
+//   border: none;
+//   cursor: pointer;
+// }
