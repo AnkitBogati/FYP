@@ -197,9 +197,9 @@ const Navbar = () => {
               </ul>
             )}
           </div>
-        )} 
+        )}
 
-          {/* UPLOAD OR BECOME A HOST CODE:*/}
+        {/* UPLOAD OR BECOME A HOST CODE:*/}
         {user ? (
           isHost ? (
             <Link to="/create-listing" className="host">Upload Properties</Link>
@@ -211,7 +211,7 @@ const Navbar = () => {
         )}
 
 
-         {/* Avatar button */}
+        {/* Avatar button */}
         <button
           className="navbar_right_account"
           onClick={() => setDropdownMenu(!dropdownMenu)}
@@ -246,6 +246,11 @@ const Navbar = () => {
                 <Link to={`/${user._id}/properties`}>Property List</Link>
                 <Link to={`/${user._id}/reservations`}>Reservation List</Link>
               </>
+            )}
+
+            {/* Show "Become A Host" if not already a host */}
+            {!isHost && (
+              <Link to="/become-host">Become A Host</Link>
             )}
 
             {/* Show "Become A Host" if not already a host */}
