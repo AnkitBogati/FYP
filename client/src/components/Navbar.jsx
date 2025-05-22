@@ -108,30 +108,32 @@ const Navbar = () => {
   // BECOME HOST FUNCTION
   const becomeHost = async () => {
     try {
-      if (window.confirm('Are you sure you want to become a host?')){
-      const res = await fetch(`http://localhost:3001/users/${user._id}/become-host`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-    
-
-      const data = await res.json();
-
-      if (res.ok) {
-        // Update the Redux store with new user role
-        dispatch({
-          type: "user/setLogin",
-          payload: { user: data.updatedUser, token: null }, // keeping token same or null
+      if (window.confirm('Are you sure you want to become a host?')) {
+        const res = await fetch(`http://localhost:3001/users/${user._id}/become-host`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
 
-        // Redirect to /host
-        navigate("/host");
-      } else {
-        alert(data.message || "Failed to become a host.");
+        const data = await res.json();
+
+        if (res.ok) {
+          // UPDATE THE REDUX STORE WITH NEW USER ROLE CODE:
+          dispatch({
+            type: "user/setLogin",
+            payload: { user: data.updatedUser, token: null }, // keeping token same or null
+          });
+
+          navigate("/create-listing");
+
+          // Redirect to /host
+          // navigate("/host");
+        } else {
+          alert(data.message || "Failed to become a host.");
+        }
       }
-    } }catch (err) {
+    } catch (err) {
       console.error("Error becoming host:", err);
       alert("Something went wrong. Try again.");
     }
