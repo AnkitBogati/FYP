@@ -197,7 +197,7 @@ const Navbar = () => {
               </ul>
             )}
           </div>
-        )}
+        )} 
 
         {/* Upload or Become A Host */}
         {user ? (
