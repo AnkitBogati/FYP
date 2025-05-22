@@ -1,22 +1,43 @@
 import { IconButton } from "@mui/material";
 import { Search, Person, Menu } from "@mui/icons-material";
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import "../styles/Navbar.scss";
+import "../styles/Notification.scss";
 import variables from "../styles/variables.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { setLogout } from "../redux/state";
 
 
 const Navbar = () => {
+ const [notifications, setNotifications] = useState([]);
   const [dropdownMenu, setDropdownMenu] = useState(false);
+  const [notificationDropdown, setNotificationDropdown] = useState(false);
+  const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
   const isHost = user?.role === "host";
+  const userRole = isHost ? "host" : "customer";
 
+   // Fetch notifications from the server
+  const fetchNotifications = async () => {
+    if (!user?._id) return;
+    
+    try {
+      const res = await fetch(`http://localhost:3001/notification/${user._id}`);
+      const data = await res.json();
+      if (res.ok) {
+        setNotifications(data);
+      } else {
+        console.error("Failed to fetch notifications:", data.message);
+      }
+    } catch (err) {
+      console.error("Error fetching notifications:", err);
+    }
+  };
 
   // BECOME HOST FUNCTION
   const becomeHost = async () => {
