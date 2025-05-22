@@ -39,6 +39,29 @@ const Navbar = () => {
     }
   };
 
+  useEffect(() => {
+    fetchNotifications();
+    
+    // Optional: Set up polling to periodically check for new notifications
+    const intervalId = setInterval(fetchNotifications, 60000); // Check every minute
+    
+    return () => clearInterval(intervalId);
+  }, [user]);
+
+  // Filter notifications based on user role and recipient
+  const filteredNotifications = notifications.filter((notif) => {
+    // For booking requests, only show to the property owner (hostId)
+    if (notif.type === "booking_request") {
+      return isHost && notif.hostId === user._id;
+    } 
+    // For booking status updates, only show to the customer/booker (customerId)
+    else if (notif.type === "booking_status") {
+      return notif.customerId === user._id;
+    }
+    
+    return false;
+  });
+
   // BECOME HOST FUNCTION
   const becomeHost = async () => {
     try {
