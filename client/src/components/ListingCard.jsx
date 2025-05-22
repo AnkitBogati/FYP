@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/ListingCard.scss";
 import {
   ArrowForwardIos,
@@ -12,7 +12,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setWishList } from "../redux/state";
-import { useState } from "react";
+import EsewaForm from "../components/EsewaForm";
+
 
 const ListingCard = ({
   listingId,
@@ -27,6 +28,7 @@ const ListingCard = ({
   startDate,
   endDate,
   totalPrice,
+  amountPaid,
   booking, // Indicates if the listing is booked
   status = "pending", // Booking status
   // User data for reservation
@@ -35,10 +37,17 @@ const ListingCard = ({
   onStatusUpdate,
   reservationId,
   showGuestInfo = false,
+  onCancelBooking, // For UI removal after status update
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [localStatus, setLocalStatus] = useState(status);
 
+  // Update local status when prop changes
+  useEffect(() => {
+    setLocalStatus(status);
+  }, [status]);
+  
   const goToPrevSlide = (e) => {
     e.stopPropagation();
     setCurrentIndex(
