@@ -211,7 +211,7 @@ const Navbar = () => {
         )}
 
 
-        {/* Avatar button */}
+         {/* Avatar button */}
         <button
           className="navbar_right_account"
           onClick={() => setDropdownMenu(!dropdownMenu)}
