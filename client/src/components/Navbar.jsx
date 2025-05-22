@@ -253,12 +253,7 @@ const Navbar = () => {
               <Link to="/become-host">Become A Host</Link>
             )}
 
-            {/* Show "Become A Host" if not already a host */}
-            {!isHost && (
-              <Link to="/become-host">Become A Host</Link>
-            )}
-
-            <Link
+             <Link
               to="/login"
             // onClick={() => {
             //   dispatch(setLogout());
