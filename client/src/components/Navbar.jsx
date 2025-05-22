@@ -68,7 +68,7 @@ const Navbar = () => {
             sx={{ color: variables.pinkred }}
             onClick={() => navigate(`/properties/search/${search}`)}
           />
-        </IconButton>
+        </IconButton> 
       </div>
 
       <div className="navbar_right">
