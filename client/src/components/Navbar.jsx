@@ -169,7 +169,35 @@ const Navbar = () => {
           </IconButton>
         </div>
 
+        {notificationDropdown && user && (
+          <div className="notification-dropdown">
+            <div className="header">
+              <h2>Notifications</h2>
+              {unreadCount > 0 && (
+                <button
+                  onClick={markAllAsRead}
+                  disabled={loading}
+                >
+                  {loading ? "Processing..." : "Mark all as read"}
+                </button>
+              )}
+            </div>
 
+            {filteredNotifications.length === 0 ? (
+              <p>No notifications yet.</p>
+            ) : (
+              <ul>
+                {filteredNotifications.map((notif, idx) => (
+                  <li key={idx} className={notif.isRead ? "read" : "unread"}>
+                    <h3>{notif.type}</h3>
+                    <p>{notif.message}</p>
+                    <span>{new Date(notif.createdAt).toLocaleString()}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
 
         {/* Upload or Become A Host */}
         {user ? (
