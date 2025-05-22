@@ -199,7 +199,7 @@ const Navbar = () => {
           </div>
         )} 
 
-        {/* Upload or Become A Host */}
+          {/* UPLOAD OR BECOME A HOST CODE:*/}
         {user ? (
           isHost ? (
             <Link to="/create-listing" className="host">Upload Properties</Link>
