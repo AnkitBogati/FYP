@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
- const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState([]);
   const [dropdownMenu, setDropdownMenu] = useState(false);
   const [notificationDropdown, setNotificationDropdown] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -22,10 +22,10 @@ const Navbar = () => {
   const isHost = user?.role === "host";
   const userRole = isHost ? "host" : "customer";
 
-   // Fetch notifications from the server
+  // Fetch notifications from the server
   const fetchNotifications = async () => {
     if (!user?._id) return;
-    
+
     try {
       const res = await fetch(`http://localhost:3001/notification/${user._id}`);
       const data = await res.json();
@@ -41,10 +41,10 @@ const Navbar = () => {
 
   useEffect(() => {
     fetchNotifications();
-    
+
     // Optional: Set up polling to periodically check for new notifications
     const intervalId = setInterval(fetchNotifications, 60000); // Check every minute
-    
+
     return () => clearInterval(intervalId);
   }, [user]);
 
@@ -53,12 +53,12 @@ const Navbar = () => {
     // For booking requests, only show to the property owner (hostId)
     if (notif.type === "booking_request") {
       return isHost && notif.hostId === user._id;
-    } 
+    }
     // For booking status updates, only show to the customer/booker (customerId)
     else if (notif.type === "booking_status") {
       return notif.customerId === user._id;
     }
-    
+
     return false;
   });
 
@@ -68,7 +68,7 @@ const Navbar = () => {
   // Function to mark all notifications as read
   const markAllAsRead = async () => {
     if (!user?._id || unreadCount === 0) return;
-    
+
     setLoading(true);
     try {
       // Pass the user role as a query parameter
@@ -78,16 +78,16 @@ const Navbar = () => {
           "Content-Type": "application/json"
         }
       });
-      
+
       const data = await res.json();
-      
+
       if (res.ok) {
         // Update only the notifications relevant to this user's role
-        setNotifications(prev => 
+        setNotifications(prev =>
           prev.map(notif => {
             // Use the same filtering logic as above to determine which notifications to mark as read
             if (
-              (isHost && notif.type === "booking_request" && notif.hostId === user._id) || 
+              (isHost && notif.type === "booking_request" && notif.hostId === user._id) ||
               (notif.type === "booking_status" && notif.customerId === user._id)
             ) {
               return { ...notif, isRead: true };
@@ -157,12 +157,21 @@ const Navbar = () => {
             sx={{ color: variables.pinkred }}
             onClick={() => navigate(`/properties/search/${search}`)}
           />
-        </IconButton> 
+        </IconButton>
       </div>
 
       <div className="navbar_right">
-        {/* Upload or Become A Host */}
 
+        <div className="notification-bell">
+          <IconButton onClick={() => setNotificationDropdown(!notificationDropdown)}>
+            <NotificationsIcon />
+            {unreadCount > 0 && <span className="badge">{unreadCount}</span>}
+          </IconButton>
+        </div>
+
+
+
+        {/* Upload or Become A Host */}
         {user ? (
           isHost ? (
             <Link to="/create-listing" className="host">Upload Properties</Link>
@@ -218,9 +227,9 @@ const Navbar = () => {
 
             <Link
               to="/login"
-              // onClick={() => {
-              //   dispatch(setLogout());
-              // }}
+            // onClick={() => {
+            //   dispatch(setLogout());
+            // }}
             >
               Log Out
             </Link>
