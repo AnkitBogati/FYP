@@ -62,6 +62,49 @@ const Navbar = () => {
     return false;
   });
 
+  // Count unread notifications
+  const unreadCount = filteredNotifications.filter(notif => !notif.isRead).length;
+
+  // Function to mark all notifications as read
+  const markAllAsRead = async () => {
+    if (!user?._id || unreadCount === 0) return;
+    
+    setLoading(true);
+    try {
+      // Pass the user role as a query parameter
+      const res = await fetch(`http://localhost:3001/notification/${user._id}/mark-all-read?role=${userRole}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      
+      const data = await res.json();
+      
+      if (res.ok) {
+        // Update only the notifications relevant to this user's role
+        setNotifications(prev => 
+          prev.map(notif => {
+            // Use the same filtering logic as above to determine which notifications to mark as read
+            if (
+              (isHost && notif.type === "booking_request" && notif.hostId === user._id) || 
+              (notif.type === "booking_status" && notif.customerId === user._id)
+            ) {
+              return { ...notif, isRead: true };
+            }
+            return notif;
+          })
+        );
+      } else {
+        console.error("Failed to mark notifications as read:", data.message);
+      }
+    } catch (err) {
+      console.error("Error marking notifications as read:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // BECOME HOST FUNCTION
   const becomeHost = async () => {
     try {
